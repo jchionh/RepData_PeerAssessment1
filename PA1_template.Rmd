@@ -141,3 +141,33 @@ By imputing mising data, we have shifted the median of the data towards the mean
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+```{r}
+# add a new column called days to dataFilled
+dataFilled$days <- ""
+
+# now, parse each date and determine if it's weekday or weekend
+for (i in 1:nrow(dataFilled))
+{
+    if (as.POSIXlt(dataFilled$date[i])$wday %% 6 == 0)
+    {
+      dataFilled$days[i] <- "weekend"
+    } 
+    else
+    {
+      dataFilled$days[i] <- "weekday"
+    }
+}
+
+# make the days factor
+dataFilled$days <- as.factor(dataFilled$days)
+
+# now, with days as a factor, we can plot our dataFilled, by mean per interval, 
+# separated by weekday and weekend
+g <- ggplot(dataFilled, aes(interval, steps))
+g + stat_summary(fun.y="mean", geom="bar") + facet_grid(. ~ days) + xlab("5-minute interval") + ylab("mean steps") + ggtitle("Mean steps each 5-minute interval, Weekdays vs. Weekends")
+```
+
+~~~
+From the plot, we can observe that there are difference in activity patterns between weekdays and weekends.
+~~~
