@@ -5,7 +5,6 @@
 
 ```r
 # load up our libraries
-library(dplyr)
 library(ggplot2)
 ```
 
@@ -15,7 +14,6 @@ library(ggplot2)
 unzip("activity.zip")
 # read the csv
 data <- read.csv("activity.csv")
-dataTable <- tbl_df(data)
 ```
 
 ## What is mean total number of steps taken per day?
