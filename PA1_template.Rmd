@@ -163,7 +163,7 @@ dataFilled$days <- as.factor(dataFilled$days)
 # now, with days as a factor, we can plot our dataFilled, by mean per interval, 
 # separated by weekday and weekend
 g <- ggplot(dataFilled, aes(interval, steps))
-g + stat_summary(fun.y="mean", geom="bar") + facet_grid(. ~ days) + xlab("5-minute interval") + ylab("mean steps") + ggtitle("Mean steps each 5-minute interval, Weekdays vs. Weekends")
+g + stat_summary(fun.y="mean", geom="line") + facet_grid(. ~ days) + xlab("5-minute interval") + ylab("mean steps") + ggtitle("Mean steps each 5-minute interval, Weekdays vs. Weekends")
 ```
 
 ~~~
